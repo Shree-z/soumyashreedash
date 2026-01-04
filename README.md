@@ -1,42 +1,42 @@
 # Welcome to My Portfolio Project Using Lovable AI
 ## Project info
 **URL**: https://soumyashreedash.lovable.app/
-Project Overview
+**Project Overview**
 
 This is my personal portfolio website designed to showcase my skills, projects, experience, and contact details in a visually appealing and professional way. The website features an elegant mandala-style background, modern layout, expressive typography, and smooth animations to deliver a pleasing user experience across devices.
 
 The design supports both light and dark themes, with subtle artistic embellishments to enrich page aesthetics without distracting from core content.
 
-Key Features
+**Key Features**
 
-Responsive Design
+**Responsive Design**
 The site is fully responsive across mobile, tablet, and desktop devices.
 
-Artistic Mandala Background
+**Artistic Mandala Background**
 A custom mandala PNG with low-opacity and animation has been integrated to reinforce a premium visual style.
 
-Showcases Projects & Experience
+**Showcases Projects & Experience**
 Clean sections to highlight portfolio work, skills, achievements, and personal introduction.
 
-Smooth Animations
+**Smooth Animations**
 Subtle transitions and scroll effects to enhance interactivity and visual hierarchy.
 
-Modern UI/UX
+**Modern UI/UX**
 Minimal yet elegant interface designed for clarity and professional presentation.
 
-Built With
+**Built With**
 
-HTML5
+>HTML5
 
-CSS3
+>CSS3
 
-JavaScript
+>JavaScript
 
-Responsive layout principles
+>Responsive layout principles
 
-Hosted using Lovable.app
+>Hosted using Lovable.app
 
-Purpose
+**Purpose**
 
 This portfolio site is created to:
 
@@ -46,7 +46,7 @@ Showcase real-world projects and technical competencies
 
 Provide a contact platform for collaboration and opportunities
 
-Sections Included
+**Sections Included**
 
 Home / Hero – Eye-catching welcome with name and brief intro
 
@@ -58,7 +58,7 @@ Projects – Work samples with links/screenshots
 
 Contact – Easy form to get in touch
 
-Design Elements
+**Design Elements**
 
 Mandala artwork used as decorative background accent with 5–10% transparency
 
@@ -68,7 +68,7 @@ Minimalistic typography for readability
 
 Consistent spacing and layout for structured content
 
-Future Improvements
+**Future Improvements**
 
 ✔ Add dark mode toggle
 ✔ Add blog section
@@ -76,6 +76,6 @@ Future Improvements
 ✔ SEO optimization
 ✔ Performance enhancements
 
-Contact
+**Contact**
 
 Feel free to reach out via email or connect with me through social platforms linked in the website.
