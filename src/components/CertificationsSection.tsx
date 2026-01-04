@@ -1,4 +1,6 @@
+import { motion } from "framer-motion";
 import { Award, ExternalLink } from "lucide-react";
+import { AnimatedSection, StaggerContainer, StaggerItem, HoverScale } from "./animations/AnimatedComponents";
 
 const certifications = [
   {
@@ -32,34 +34,54 @@ const CertificationsSection = () => {
   return (
     <section className="py-20 relative">
       <div className="container mx-auto px-6">
-        <h2 className="section-title gradient-text text-center mb-4">Certifications</h2>
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Professional certifications that validate my expertise in data science and technology
-        </p>
+        <AnimatedSection>
+          <h2 className="section-title gradient-text text-center mb-4">Certifications</h2>
+        </AnimatedSection>
+        <AnimatedSection delay={0.1}>
+          <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+            Professional certifications that validate my expertise in data science and technology
+          </p>
+        </AnimatedSection>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <StaggerContainer 
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
+          staggerDelay={0.1}
+        >
           {certifications.map((cert, idx) => (
-            <div
-              key={cert.title}
-              className="glass-card rounded-2xl p-6 hover:scale-[1.02] transition-transform duration-300 group"
-            >
-              <div className="flex items-start justify-between mb-4">
-                <div className="p-2 rounded-lg bg-gold/10">
-                  <Award size={20} className="text-gold" />
-                </div>
-                <span className="inline-flex items-center gap-1 text-xs text-primary">
-                  <ExternalLink size={12} />
-                  Verified
-                </span>
-              </div>
-              <h3 className="text-lg font-serif font-semibold mb-2 text-foreground group-hover:text-primary transition-colors">
-                {cert.title}
-              </h3>
-              <p className="text-sm text-primary font-medium mb-3">{cert.issuer}</p>
-              <p className="text-sm text-muted-foreground">{cert.description}</p>
-            </div>
+            <StaggerItem key={cert.title}>
+              <HoverScale scale={1.03}>
+                <motion.div
+                  className="glass-card rounded-2xl p-6 h-full group cursor-pointer"
+                  whileHover={{ 
+                    boxShadow: "0 25px 50px rgba(212, 175, 55, 0.15)",
+                  }}
+                >
+                  <div className="flex items-start justify-between mb-4">
+                    <motion.div 
+                      className="p-2 rounded-lg bg-gold/10"
+                      whileHover={{ rotate: 15 }}
+                    >
+                      <Award size={20} className="text-gold" />
+                    </motion.div>
+                    <motion.span 
+                      className="inline-flex items-center gap-1 text-xs text-primary"
+                      animate={{ opacity: [0.7, 1, 0.7] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      <ExternalLink size={12} />
+                      Verified
+                    </motion.span>
+                  </div>
+                  <h3 className="text-lg font-serif font-semibold mb-2 text-foreground group-hover:text-primary transition-colors">
+                    {cert.title}
+                  </h3>
+                  <p className="text-sm text-primary font-medium mb-3">{cert.issuer}</p>
+                  <p className="text-sm text-muted-foreground">{cert.description}</p>
+                </motion.div>
+              </HoverScale>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

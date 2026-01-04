@@ -1,3 +1,7 @@
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import { AnimatedSection, StaggerContainer, StaggerItem, HoverScale } from "./animations/AnimatedComponents";
+
 const skillCategories = [
   {
     title: "Programming Languages",
@@ -48,47 +52,83 @@ const SkillsSection = () => {
   return (
     <section id="skills" className="py-20 relative">
       <div className="container mx-auto px-6">
-        <h2 className="section-title gradient-text text-center mb-4">Skills & Expertise</h2>
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          A comprehensive overview of my technical skills and proficiency levels
-        </p>
+        <AnimatedSection>
+          <h2 className="section-title gradient-text text-center mb-4">Skills & Expertise</h2>
+        </AnimatedSection>
+        <AnimatedSection delay={0.1}>
+          <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+            A comprehensive overview of my technical skills and proficiency levels
+          </p>
+        </AnimatedSection>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <StaggerContainer 
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
+          staggerDelay={0.1}
+        >
           {skillCategories.map((category, idx) => (
-            <div
-              key={category.title}
-              className="glass-card rounded-2xl p-6 hover:scale-[1.02] transition-transform duration-300"
-              style={{ animationDelay: `${idx * 0.1}s` }}
-            >
-              <h3 className="text-lg font-serif font-semibold mb-6 text-foreground">
-                {category.title}
-              </h3>
-              <div className="space-y-4">
-                {category.skills.map((skill) => (
-                  <SkillBar key={skill.name} name={skill.name} level={skill.level} />
-                ))}
-              </div>
-            </div>
+            <StaggerItem key={category.title}>
+              <HoverScale scale={1.02}>
+                <motion.div
+                  className="glass-card rounded-2xl p-6 h-full"
+                  whileHover={{ 
+                    boxShadow: "0 25px 50px rgba(45, 212, 191, 0.1)",
+                  }}
+                >
+                  <motion.h3 
+                    className="text-lg font-serif font-semibold mb-6 text-foreground"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                  >
+                    {category.title}
+                  </motion.h3>
+                  <div className="space-y-4">
+                    {category.skills.map((skill, skillIdx) => (
+                      <SkillBar 
+                        key={skill.name} 
+                        name={skill.name} 
+                        level={skill.level} 
+                        delay={skillIdx * 0.1}
+                      />
+                    ))}
+                  </div>
+                </motion.div>
+              </HoverScale>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );
 };
 
-const SkillBar = ({ name, level }: { name: string; level: number }) => (
-  <div>
-    <div className="flex justify-between items-center mb-2">
-      <span className="text-sm font-medium text-foreground">{name}</span>
-      <span className="text-xs text-primary font-semibold">{level}%</span>
+const SkillBar = ({ name, level, delay }: { name: string; level: number; delay: number }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  return (
+    <div ref={ref}>
+      <div className="flex justify-between items-center mb-2">
+        <span className="text-sm font-medium text-foreground">{name}</span>
+        <motion.span 
+          className="text-xs text-primary font-semibold"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.5, delay: delay + 0.5 }}
+        >
+          {level}%
+        </motion.span>
+      </div>
+      <div className="skill-bar">
+        <motion.div
+          className="skill-bar-fill"
+          initial={{ width: 0 }}
+          animate={isInView ? { width: `${level}%` } : {}}
+          transition={{ duration: 1, delay: delay + 0.2, ease: [0.25, 0.4, 0.25, 1] }}
+        />
+      </div>
     </div>
-    <div className="skill-bar">
-      <div
-        className="skill-bar-fill"
-        style={{ width: `${level}%` }}
-      />
-    </div>
-  </div>
-);
+  );
+};
 
 export default SkillsSection;

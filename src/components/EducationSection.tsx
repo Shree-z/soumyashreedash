@@ -1,4 +1,6 @@
+import { motion } from "framer-motion";
 import { GraduationCap, MapPin, Calendar } from "lucide-react";
+import { AnimatedSection, StaggerContainer, StaggerItem, HoverScale } from "./animations/AnimatedComponents";
 
 const education = [
   {
@@ -27,59 +29,90 @@ const EducationSection = () => {
   return (
     <section className="py-20 relative">
       <div className="container mx-auto px-6">
-        <h2 className="section-title gradient-text text-center mb-4">Education</h2>
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          My academic journey in computer science and engineering
-        </p>
+        <AnimatedSection>
+          <h2 className="section-title gradient-text text-center mb-4">Education</h2>
+        </AnimatedSection>
+        <AnimatedSection delay={0.1}>
+          <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+            My academic journey in computer science and engineering
+          </p>
+        </AnimatedSection>
 
-        <div className="max-w-3xl mx-auto space-y-8">
+        <StaggerContainer className="max-w-3xl mx-auto space-y-8" staggerDelay={0.2}>
           {education.map((edu, idx) => (
-            <div key={idx} className="glass-card rounded-2xl p-8 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full" />
-              
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-xl bg-primary/10 flex-shrink-0">
-                  <GraduationCap size={28} className="text-primary" />
-                </div>
-                
-                <div className="flex-1">
-                  <div className="flex flex-wrap items-center gap-3 mb-2">
-                    <h3 className="text-xl font-serif font-semibold text-foreground">
-                      {edu.degree}
-                    </h3>
-                    <span
-                      className={`px-3 py-1 text-xs font-medium rounded-full ${
-                        edu.status === "Ongoing"
-                          ? "bg-primary/10 text-primary"
-                          : "bg-muted text-muted-foreground"
-                      }`}
+            <StaggerItem key={idx}>
+              <HoverScale scale={1.02}>
+                <motion.div 
+                  className="glass-card rounded-2xl p-8 relative overflow-hidden"
+                  whileHover={{ 
+                    boxShadow: "0 25px 50px rgba(45, 212, 191, 0.1)",
+                  }}
+                >
+                  <motion.div 
+                    className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full"
+                    initial={{ scale: 0, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: true }}
+                  />
+                  
+                  <div className="flex items-start gap-4">
+                    <motion.div 
+                      className="p-3 rounded-xl bg-primary/10 flex-shrink-0"
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.6 }}
                     >
-                      {edu.status}
-                    </span>
+                      <GraduationCap size={28} className="text-primary" />
+                    </motion.div>
+                    
+                    <div className="flex-1">
+                      <div className="flex flex-wrap items-center gap-3 mb-2">
+                        <h3 className="text-xl font-serif font-semibold text-foreground">
+                          {edu.degree}
+                        </h3>
+                        <motion.span
+                          className={`px-3 py-1 text-xs font-medium rounded-full ${
+                            edu.status === "Ongoing"
+                              ? "bg-primary/10 text-primary"
+                              : "bg-muted text-muted-foreground"
+                          }`}
+                          animate={edu.status === "Ongoing" ? { scale: [1, 1.05, 1] } : {}}
+                          transition={{ duration: 2, repeat: Infinity }}
+                        >
+                          {edu.status}
+                        </motion.span>
+                      </div>
+                      
+                      <p className="text-primary font-medium mb-1">{edu.institution}</p>
+                      {edu.specialization && (
+                        <p className="text-sm text-secondary mb-3">{edu.specialization}</p>
+                      )}
+                      
+                      <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-4">
+                        <motion.span 
+                          className="flex items-center gap-1"
+                          whileHover={{ color: "hsl(var(--primary))" }}
+                        >
+                          <Calendar size={14} />
+                          {edu.period}
+                        </motion.span>
+                        <motion.span 
+                          className="flex items-center gap-1"
+                          whileHover={{ color: "hsl(var(--primary))" }}
+                        >
+                          <MapPin size={14} />
+                          {edu.location}
+                        </motion.span>
+                      </div>
+                      
+                      <p className="text-muted-foreground">{edu.description}</p>
+                    </div>
                   </div>
-                  
-                  <p className="text-primary font-medium mb-1">{edu.institution}</p>
-                  {edu.specialization && (
-                    <p className="text-sm text-secondary mb-3">{edu.specialization}</p>
-                  )}
-                  
-                  <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-4">
-                    <span className="flex items-center gap-1">
-                      <Calendar size={14} />
-                      {edu.period}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <MapPin size={14} />
-                      {edu.location}
-                    </span>
-                  </div>
-                  
-                  <p className="text-muted-foreground">{edu.description}</p>
-                </div>
-              </div>
-            </div>
+                </motion.div>
+              </HoverScale>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );
