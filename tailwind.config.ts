@@ -80,10 +80,22 @@ export default {
             height: "0",
           },
         },
+        "mandala-rotate": {
+          "0%": {
+            transform: "translate(-50%, -50%) rotate(0deg) scale(1)",
+          },
+          "50%": {
+            transform: "translate(-50%, -50%) rotate(180deg) scale(1.05)",
+          },
+          "100%": {
+            transform: "translate(-50%, -50%) rotate(360deg) scale(1)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "mandala-rotate": "mandala-rotate 120s linear infinite",
       },
     },
   },
