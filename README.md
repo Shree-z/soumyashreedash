@@ -1,6 +1,7 @@
 # Welcome to My Portfolio Project Using Lovable AI
 ## Project info
 **URL**: https://soumyashreedash.lovable.app/
+
 **Project Overview**
 
 This is my personal portfolio website designed to showcase my skills, projects, experience, and contact details in a visually appealing and professional way. The website features an elegant mandala-style background, modern layout, expressive typography, and smooth animations to deliver a pleasing user experience across devices.
