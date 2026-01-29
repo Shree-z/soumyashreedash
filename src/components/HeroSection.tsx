@@ -114,9 +114,8 @@ const HeroSection = () => {
               >
                 <HoverScale scale={1.05}>
                   <a
-                    href="https://soumyashree.lovable.app/Soumyashree_Dash_Resume.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="/Soumyashree_Dash_Resume.pdf"
+                    download="Soumyashree_Dash_Resume.pdf"
                     className="inline-flex items-center gap-3 px-6 py-4 rounded-xl font-medium text-primary-foreground mb-8 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20"
                     style={{
                       background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)))',
