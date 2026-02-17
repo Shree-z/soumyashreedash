@@ -41,7 +41,7 @@ Minimal yet elegant interface designed for clarity and professional presentation
 
 This portfolio site is created to:
 
-Present my professional profile to potential employers/clients
+Present my professional profile to recruiters.
 
 Showcase real-world projects and technical competencies
 
